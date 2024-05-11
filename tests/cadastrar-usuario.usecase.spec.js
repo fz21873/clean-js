@@ -15,7 +15,7 @@ describe('Cadastrar usuario Usecase',function(){
          cpf: 'cpf_valido',
          telefone: 'telefone_valido',
          endereco: 'endereço_valido',
-         email: 'email_vaido'
+         email: 'email_valido'
        };
        const sut = cadastrarUsuarioUsecase({usuariosRepository});
        const output = await sut(usuarioDTO);
