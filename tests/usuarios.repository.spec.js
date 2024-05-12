@@ -32,5 +32,12 @@ describe('Usuarios Repository', function(){
 
     expect(buscarPorCPFCadastrado.id).toBeDefined();
     expect(buscarPorCPFCadastrado.nome_completo).toBe('nome_valido');
+  });
+
+  test('Debe retornar null se o usuario não existir ao buscar por CPF', async function(){
+    const sut = usuariosRepository();
+    const buscarPorCPFCadastrado = await sut.buscarPorCPF('cpf_noa_cadastrado');
+
+    expect(buscarPorCPFCadastrado).toBeNull();
   })
 })
