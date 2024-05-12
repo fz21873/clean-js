@@ -1,4 +1,5 @@
 
+const { testEnvironment } = require("../jest.config");
 const cadastrarLivroUsecase = require("../src/application/LivrosUseCase/cadastrar-livro.usecase");
 const { Either, AppError } = require("../src/shared/errors");
 
@@ -22,7 +23,12 @@ describe('Cadastra Livro Usecase', function(){
         expect(livrosRepository.cadastrar).toHaveBeenCalledTimes(1);
     });
 
-    test('Deve retornar um throw AppErro se o livrosRepository não foi fornecido', function() {
+    test('Deve retornar um throw AppError se o livrosRepository não foi fornecido', function() {
         expect(() => cadastrarLivroUsecase({})).toThrow(new AppError(AppError.dependencias));
     });
+
+    test('Debe retornar um throw AppError se os campos obrigatorios não forem fornecido', async function(){
+        const sut = cadastrarLivroUsecase({livrosRepository});
+        await expect(() => sut({})).rejects.toThrow(new AppError(AppError.camposObrigatoriosAusentes));
+    })
 })
