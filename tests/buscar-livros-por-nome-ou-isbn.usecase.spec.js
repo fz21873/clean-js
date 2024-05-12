@@ -1,4 +1,5 @@
 const buscarLivrosPorNomeOuIsbnUsecase = require("../src/application/LivrosUseCase/buscar-livros-por-nome-ou-isbn.usecase");
+const { AppError } = require("../src/shared/errors");
 
 describe('Buscar Livros por nome ou ISBN  UseCase',function(){
    const livrosRepository ={
@@ -37,6 +38,9 @@ describe('Buscar Livros por nome ou ISBN  UseCase',function(){
     expect(output.rigth).toEqual([]);
     expect(livrosRepository.buscarPorNomeOuISBN).toHaveBeenCalledWith(nomeISBNDTO.valor);
     expect(livrosRepository.buscarPorNomeOuISBN).toHaveBeenCalledTimes(1);
+  });
 
+  test('Deve retornar um throw AppError se o livrosRepository não for fornecido', function(){
+    expect(() => buscarLivrosPorNomeOuIsbnUsecase({})).toThrow(new AppError(AppError.dependencias));
   })
 }); 
