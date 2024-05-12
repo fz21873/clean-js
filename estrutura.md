@@ -1,10 +1,11 @@
 ## Estruturas
 
 ## UsuariosRepository
-[] cadastrar({nome_completo,cpf,telefone,endereco,emai}) => Promise<void>
+[x] cadastrar({nome_completo,cpf,telefone,endereco,emai}) => Promise<void>
+[] buscarPorCPF(cpf) => Promise<usuario | null>
 [] existeCpf(cpf) => Promise<boolean>
 [] exiteEmail(email) => Promise <boolean>
-[] buscarPor(cpf) => Promise<usuario>
+
 
 ## LivrosRepository
 [] cadastrar({nome,quantidade,autor,genero,ISBN}) => Promise<void>
