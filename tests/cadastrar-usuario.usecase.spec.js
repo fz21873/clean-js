@@ -44,6 +44,7 @@ describe('Cadastrar usuario Usecase',function(){
       endereco: 'endereço_valido',
       email: 'email_valido'
     };
+    
     const sut  = cadastrarUsuarioUsecase({usuariosRepository});
     const output = await sut(usuarioDTO);
 
@@ -69,7 +70,7 @@ describe('Cadastrar usuario Usecase',function(){
 
     expect(output.rigth).toBeNull();
     expect(output.left).toEqual(Either.valorJaCadastrado('email'));
-    expect(usuariosRepository.existeEmail).toHaveBeenLastCalledWith(usuarioDTO.email);
+    expect(usuariosRepository.existeEmail).toHaveBeenCalledWith(usuarioDTO.email);
     expect(usuariosRepository.existeEmail).toHaveBeenCalledTimes(1);
    });
 

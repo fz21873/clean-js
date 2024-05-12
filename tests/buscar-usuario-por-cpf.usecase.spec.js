@@ -23,7 +23,7 @@ describe('Buscar usuario por Cpf useCase', function(){
     const output = await sut(cpfDTO);
 
     expect(output.rigth).toEqual(outputDTO);
-    expect(usuariosRepository.buscarPorCpf).toHaveBeenLastCalledWith(cpfDTO.Cpf);
+    expect(usuariosRepository.buscarPorCpf).toHaveBeenCalledWith(cpfDTO.Cpf);
     expect(usuariosRepository.buscarPorCpf).toHaveBeenCalledTimes(1);
 
    });
@@ -38,7 +38,7 @@ describe('Buscar usuario por Cpf useCase', function(){
     output = await sut(cpfDTO);
 
     expect(output.rigth).toBeNull();
-    expect(usuariosRepository.buscarPorCpf).toHaveBeenLastCalledWith(cpfDTO.Cpf);
+    expect(usuariosRepository.buscarPorCpf).toHaveBeenCalledWith(cpfDTO.Cpf);
     expect(usuariosRepository.buscarPorCpf).toHaveBeenCalledTimes(1);
   });
 
