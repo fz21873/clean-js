@@ -1,4 +1,5 @@
-const buscarLivrosPorNomeOuIsbnUsecase = require("../src/application/LivrosUseCase/buscar-livros-por-nome-ou-isbn.usecase");
+
+const buscarLivrosPorNomeOuIsbnUseCase = require("../src/application/LivrosUseCase/buscar-livros-por-nome-ou-isbn.usecase");
 const { AppError } = require("../src/shared/errors");
 
 describe('Buscar Livros por nome ou ISBN  UseCase',function(){
@@ -20,7 +21,7 @@ describe('Buscar Livros por nome ou ISBN  UseCase',function(){
       }];
 
     livrosRepository.buscarPorNomeOuISBN.mockResolvedValue(outputDTO);
-    const sut = buscarLivrosPorNomeOuIsbnUsecase({livrosRepository});
+    const sut = buscarLivrosPorNomeOuIsbnUseCase({livrosRepository});
     output = await sut(nomeISBNDTO);
 
     expect(output.rigth).toEqual(outputDTO);
@@ -33,7 +34,7 @@ describe('Buscar Livros por nome ou ISBN  UseCase',function(){
     const  nomeISBNDTO = {
         valor: 'valor_nao_cadastrado',
     };
-    const sut = buscarLivrosPorNomeOuIsbnUsecase({livrosRepository})
+    const sut = buscarLivrosPorNomeOuIsbnUseCase({livrosRepository})
     const output = await sut(nomeISBNDTO);
     expect(output.rigth).toEqual([]);
     expect(livrosRepository.buscarPorNomeOuISBN).toHaveBeenCalledWith(nomeISBNDTO.valor);
@@ -41,6 +42,11 @@ describe('Buscar Livros por nome ou ISBN  UseCase',function(){
   });
 
   test('Deve retornar um throw AppError se o livrosRepository não for fornecido', function(){
-    expect(() => buscarLivrosPorNomeOuIsbnUsecase({})).toThrow(new AppError(AppError.dependencias));
+    expect(() => buscarLivrosPorNomeOuIsbnUseCase({})).toThrow(new AppError(AppError.dependencias));
+  });
+
+  test('Deve retonar um throw AppError se o campo  valor não for fornecido', async function(){
+    const sut = buscarLivrosPorNomeOuIsbnUseCase({livrosRepository})
+    await expect(() => sut({})).rejects.toThrow(new AppError(AppError.camposObrigatoriosAusentes));
   })
 }); 
