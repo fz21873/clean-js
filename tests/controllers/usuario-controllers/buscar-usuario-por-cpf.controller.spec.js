@@ -1,3 +1,4 @@
+const { ZodError } = require("zod");
 const buscarUsuarioPorCpfController = require("../../../src/interface-adapters/controllers/usuarioController/buscar-usuario-por-cpf.controller");
 const { Either, AppError } = require("../../../src/shared/errors");
 const httpResponse = require("../../../src/shared/helpers/http.response");
@@ -50,5 +51,14 @@ describe('Buscar por CPF controller ',  function(){
    test('Deve retornar um throw AppError se as dependecias buscarUsuarioPorCpfUseCase e httpResquest não forem fornecidos',
     function(){
         expect(buscarUsuarioPorCpfController({})).rejects.toThrow(new AppError(AppError.dependencias));
+    });
+
+    test('Deve retornar um error do usuario validator se os campos não forem fornecidos',
+    async function(){
+        const httpResquest = {
+            params:{}
+         };
+         expect(() => buscarUsuarioPorCpfController({ buscarUsuarioPorCpfUseCase, httpResquest}))
+         .rejects.toBeInstanceOf(ZodError);
     });
 })
