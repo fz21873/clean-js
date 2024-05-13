@@ -1,5 +1,5 @@
 const buscarUsuarioPorCpfController = require("../../../src/interface-adapters/controllers/usuarioController/buscar-usuario-por-cpf.controller");
-const { Either } = require("../../../src/shared/errors");
+const { Either, AppError } = require("../../../src/shared/errors");
 const httpResponse = require("../../../src/shared/helpers/http.response");
 
 describe('Buscar por CPF controller ',  function(){
@@ -46,4 +46,9 @@ describe('Buscar por CPF controller ',  function(){
       expect(buscarUsuarioPorCpfUseCase).toHaveBeenCalledTimes(1);
       
    });
+
+   test('Deve retornar um throw AppError se as dependecias buscarUsuarioPorCpfUseCase e httpResquest não forem fornecidos',
+    function(){
+        expect(buscarUsuarioPorCpfController({})).rejects.toThrow(new AppError(AppError.dependencias));
+    });
 })
