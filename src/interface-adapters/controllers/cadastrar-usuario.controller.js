@@ -7,4 +7,9 @@ module.exports = async function cadastrarUsuarioController({cadastrarUsarioUseCa
     endereco, 
     email
  });
-}
+
+ return output.fold(
+    (error) => httpResquest(400, error.message),
+    () => httpResquest(201,null)
+ );
+};
