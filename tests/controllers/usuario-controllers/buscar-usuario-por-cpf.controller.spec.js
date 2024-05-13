@@ -29,5 +29,21 @@ describe('Buscar por CPF controller ',  function(){
       expect(buscarUsuarioPorCpfUseCase).toHaveBeenCalledWith(httpResquest.params);
       expect(buscarUsuarioPorCpfUseCase).toHaveBeenCalledTimes(1);
       
-   })
+   });
+
+   test('Debe retornar htppResponse 200 e null se nenhum usuario for encontrado', async function(){
+    buscarUsuarioPorCpfUseCase.mockResolvedValue(Either.Rigth(null));
+      const httpResquest = {
+        params:{
+            cpf:'999.999.999-99'
+        }
+      };
+
+      const response = await buscarUsuarioPorCpfController({buscarUsuarioPorCpfUseCase, httpResquest});
+
+      expect(response).toEqual(httpResponse(200,null));
+      expect(buscarUsuarioPorCpfUseCase).toHaveBeenCalledWith(httpResquest.params);
+      expect(buscarUsuarioPorCpfUseCase).toHaveBeenCalledTimes(1);
+      
+   });
 })
