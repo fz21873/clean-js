@@ -19,4 +19,8 @@ module.exports = class Either{
     static valorJaCadastrado(valor){
         return {message: `${valor} já cadastrado.`};
     }
+
+    fold(leftFn,rigthFn){
+      return this.left != null ? leftFn(this.left): rigthFn(this.rigth);
+    }
 };
