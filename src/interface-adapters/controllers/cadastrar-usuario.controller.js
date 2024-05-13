@@ -1,6 +1,8 @@
-module.exports = async function cadastrarUsuarioController({cadastrarUsarioUseCase, httpResquest}){
+const httpResponse = require("../../shared/helpers/http.response");
+
+module.exports = async function cadastrarUsuarioController({cadastrarUsuarioUseCase, httpResquest}){
  const {nome_completo, cpf, telefone, endereco, email} = httpResquest.body;
- const output = cadastrarUsarioUseCase({
+ const output = await cadastrarUsuarioUseCase({
     nome_completo, 
     cpf, 
     telefone, 
@@ -9,7 +11,7 @@ module.exports = async function cadastrarUsuarioController({cadastrarUsarioUseCa
  });
 
  return output.fold(
-    (error) => httpResquest(400, error.message),
-    () => httpResquest(201,null)
+    (error) => httpResponse(400, error.message),
+    () => httpResponse(201,null)
  );
 };

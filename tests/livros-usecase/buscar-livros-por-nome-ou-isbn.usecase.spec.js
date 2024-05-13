@@ -1,6 +1,6 @@
 
-const buscarLivrosPorNomeOuIsbnUseCase = require("../src/application/LivrosUseCase/buscar-livros-por-nome-ou-isbn.usecase");
-const { AppError } = require("../src/shared/errors");
+const buscarLivrosPorNomeOuIsbnUseCase = require("../../src/application/LivrosUseCase/buscar-livros-por-nome-ou-isbn.usecase");
+const { AppError } = require("../../src/shared/errors");
 
 describe('Buscar Livros por nome ou ISBN  UseCase',function(){
    const livrosRepository ={

@@ -1,8 +1,8 @@
 
-const cadastrarUsuarioUsecase = require("../src/application/UsuarioUsueCase/cadastrar-usuario.usecase");
-const { Either } = require("../src/shared/errors");
-const AppError = require("../src/shared/errors/AppError");
-const { valorJaCadastrado } = require("../src/shared/errors/Either");
+const cadastrarUsuarioUsecase = require("../../src/application/UsuarioUsueCase/cadastrar-usuario.usecase");
+const { Either } = require("../../src/shared/errors");
+const AppError = require("../../src/shared/errors/AppError");
+const { valorJaCadastrado } = require("../../src/shared/errors/Either");
 
 describe('Cadastrar usuario Usecase',function(){
     const usuariosRepository = {

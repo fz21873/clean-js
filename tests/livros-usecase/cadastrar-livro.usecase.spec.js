@@ -1,6 +1,6 @@
 
-const cadastrarLivroUsecase = require("../src/application/LivrosUseCase/cadastrar-livro.usecase");
-const { Either, AppError } = require("../src/shared/errors");
+const cadastrarLivroUsecase = require("../../src/application/LivrosUseCase/cadastrar-livro.usecase");
+const { Either, AppError } = require("../../src/shared/errors");
 
 describe('Cadastra Livro Usecase', function(){
     const livrosRepository = {

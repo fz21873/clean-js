@@ -1,4 +1,5 @@
-const { usuariosRepository, typeormUsuariosRepository } = require("../src/infra/db/typeorm/repositories/usuarios.repository");
+
+const { typeormUsuariosRepository, usuariosRepository } = require("../../../src/infra/db/typeorm/repositories/usuarios.repository");
 
 describe('Usuarios Repository', function(){
   let sut;
