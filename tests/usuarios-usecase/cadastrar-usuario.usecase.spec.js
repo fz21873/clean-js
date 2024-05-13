@@ -1,5 +1,5 @@
 
-const cadastrarUsuarioUsecase = require("../../src/application/UsuarioUsueCase/cadastrar-usuario.usecase");
+const { cadastrarUsuarioUseCase } = require("../../src/application/UsuarioUseCase/cadastrar-usuario.usecase");
 const { Either } = require("../../src/shared/errors");
 const AppError = require("../../src/shared/errors/AppError");
 const { valorJaCadastrado } = require("../../src/shared/errors/Either");
@@ -18,7 +18,7 @@ describe('Cadastrar usuario Usecase',function(){
          endereco: 'endereço_valido',
          email: 'email_valido'
        };
-       const sut = cadastrarUsuarioUsecase({usuariosRepository});
+       const sut =  cadastrarUsuarioUseCase({usuariosRepository});
        const output = await sut(usuarioDTO);
      
        expect(output.rigth).toBeNull();
@@ -27,11 +27,11 @@ describe('Cadastrar usuario Usecase',function(){
      });
    
    test("Debe retornar um throw AppError se o usuariosRepository não for fornecido", function() {
-       expect(() => cadastrarUsuarioUsecase({})).toThrow(new AppError(AppError.dependencias));
+       expect(() => cadastrarUsuarioUseCase({})).toThrow(new AppError(AppError.dependencias));
    });
 
    test('Deve retornar um throw AppError se os campos obrigatorios não forem fornecido', async function() {
-       const sut  = cadastrarUsuarioUsecase({ usuariosRepository });
+       const sut  = cadastrarUsuarioUseCase({ usuariosRepository });
        await expect(() => sut({})).rejects.toThrow(new AppError(AppError.camposObrigatoriosAusentes));
    });
 
@@ -45,7 +45,7 @@ describe('Cadastrar usuario Usecase',function(){
       email: 'email_valido'
     };
     
-    const sut  = cadastrarUsuarioUsecase({usuariosRepository});
+    const sut  =  cadastrarUsuarioUseCase({usuariosRepository});
     const output = await sut(usuarioDTO);
 
     expect(output.rigth).toBeNull();
@@ -65,7 +65,7 @@ describe('Cadastrar usuario Usecase',function(){
       email: 'email_ja_cadastrado'
     };
 
-    const sut = cadastrarUsuarioUsecase({usuariosRepository});
+    const sut = cadastrarUsuarioUseCase({usuariosRepository});
     const output = await sut(usuarioDTO);
 
     expect(output.rigth).toBeNull();

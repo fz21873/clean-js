@@ -1,4 +1,4 @@
-const buscarUsuarioPorCpfUsecase = require("../../src/application/UsuarioUsueCase/buscar-usuario-por-cpf.usecase");
+const buscarUsuarioPorCpfUsecase = require("../../src/application/UsuarioUseCase/buscar-usuario-por-cpf.usecase");
 const { AppError } = require("../../src/shared/errors");
 
 describe('Buscar usuario por Cpf useCase', function(){

@@ -53,7 +53,7 @@ describe('Buscar por CPF controller ',  function(){
         expect(buscarUsuarioPorCpfController({})).rejects.toThrow(new AppError(AppError.dependencias));
     });
 
-    test('Deve retornar um error do usuario validator se os campos não forem fornecidos',
+    test('Deve retornar um error do usuario validator se os campos obrigatorios não forem fornecidos',
     async function(){
         const httpResquest = {
             params:{}
