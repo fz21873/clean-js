@@ -1,11 +1,11 @@
-const { AppError } = require("../../shared/errors");
-const httpResponse = require("../../shared/helpers/http.response");
-const { usuarioValidator } = require("../../shared/validador/usuario/usuario.validator");
+const { AppError } = require("../../../shared/errors");
+const httpResponse = require("../../../shared/helpers/http.response");
+const { cadastrarUsuarioValidator } = require("../../../shared/validador/usuario/usuario.validator");
 
 module.exports = async function cadastrarUsuarioController({cadastrarUsuarioUseCase, httpResquest}){
  const checaDependecias = cadastrarUsuarioUseCase && httpResquest && httpResquest.body;
  if(!checaDependecias) throw new AppError(AppError.dependencias);
- const {nome_completo, cpf, telefone, endereco, email} = usuarioValidator.parse(httpResquest.body) // httpResquest.body;
+ const {nome_completo, cpf, telefone, endereco, email} = cadastrarUsuarioValidator.parse(httpResquest.body);
  const output = await cadastrarUsuarioUseCase({
     nome_completo, 
     cpf, 

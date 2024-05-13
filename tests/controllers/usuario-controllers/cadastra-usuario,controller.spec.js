@@ -1,5 +1,5 @@
 const { ZodError } = require("zod");
-const cadastrarUsuarioController = require("../../../src/interface-adapters/controllers/cadastrar-usuario.controller");
+const cadastrarUsuarioController = require("../../../src/interface-adapters/controllers/usuarioController/cadastrar-usuario.controller");
 const { Either, AppError } = require("../../../src/shared/errors");
 const httpResponse = require("../../../src/shared/helpers/http.response");
 
@@ -62,6 +62,6 @@ describe('Cadastrar usuriao Controller', function(){
       };
       expect(() => cadastrarUsuarioController({ cadastrarUsuarioUseCase, httpResquest}))
       .rejects.toBeInstanceOf(ZodError);
-     })
+     });
 
     });
